@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 25 — Implementation Status</title>
+<link rel="stylesheet" href="global.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .slide .bullets { gap: 10px; }
+  .slide .bullets li { font-size: 20pt; line-height: 1.3; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1 class="slide-title">Implementation Status</h1>
+
+  <div class="slide-body">
+    <div class="two-col">
+      <div class="col">
+        <h3>Live Deployment</h3>
+        <ul class="bullets">
+          <li>Bot: <b>@temariwarebot</b> (live on Telegram)</li>
+          <li>Channel: <b>@TEMARIWARE</b> (broadcasts working)</li>
+          <li>Mini App: deployed on Vercel (temariware-rouge.vercel.app)</li>
+          <li>Database: Neon Postgres (Frankfurt)</li>
+          <li>Webhook: configured and verified</li>
+          <li>All 9 bot commands functional</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Implemented Features</h3>
+        <ul class="bullets">
+          <li>6 Mini App views with 3-language support</li>
+          <li>Job posting with payment screenshot</li>
+          <li>Application with mandatory documents</li>
+          <li>Employer accept/reject applicants</li>
+          <li>Student payment upload after acceptance</li>
+          <li>Admin payment approval + auto-hire</li>
+          <li>Auto-close on positions filled</li>
+          <li>Channel broadcast + subscriber alerts</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      System is production-ready and accepting real users.
+    </div>
+  </div>
+</div>
+
+<aside data-notes class="hidden">
+- Open @temariwarebot in Telegram to demo the live bot.
+- Mini App loads inside Telegram; can also demo on temariware-rouge.vercel.app.
+- Be ready to show one full flow: post → apply → accept → pay → hire.
+- All nine bot slash commands are wired to the same webhook.
+- Auto-close can be triggered by accepting the last remaining position.
+</aside>
+</body>
+</html>

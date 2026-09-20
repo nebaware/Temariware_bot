@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 20 — Sequence & Activity Diagrams</title>
+<link rel="stylesheet" href="global.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .slide .bullets li { font-size: 20pt; }
+  .slide .bullets li b { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1 class="slide-title">Sequence &amp; Activity Diagrams</h1>
+
+  <div class="slide-body">
+    <div class="two-col">
+      <div class="col">
+        <h3>Sequence Diagrams</h3>
+        <ul class="bullets">
+          <li><b>Apply to Job:</b> Mini App → Jobs API → Applications API → Database → Employer (Telegram notification)</li>
+          <li><b>Accept Applicant and Pay:</b> Employer → Accept API → Student (notification) → Pay API → Admin → Approve Payment API</li>
+          <li><b>Approve Job and Broadcast:</b> Admin → Approve API → Channel (Telegram Bot API) → Subscribers (push)</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Activity Diagrams</h3>
+        <ul class="bullets">
+          <li><b>Job Posting &amp; Approval Flow:</b> submit → payment screenshot → admin review → approve/reject → broadcast → alerts</li>
+          <li><b>Application Lifecycle:</b> PENDING → ACCEPTED → PAYMENT_PENDING → HIRED (or REJECTED/CLOSED)</li>
+          <li><b>Auto-close trigger:</b> when filledPositions = positionsAvailable, mark job CLOSED, notify all parties</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      Full diagrams in Chapter 2, Figures 2.9–2.13.
+    </div>
+  </div>
+</div>
+
+<aside data-notes class="hidden">
+- Apply-to-Job sequence spans four layers and ends with a Telegram push.
+- Application Lifecycle state transitions are enforced at the API layer.
+- Auto-close runs on every accept and idempotently marks the job CLOSED.
+- Approve-and-broadcast path was the trickiest because of channel URL-button limits.
+- Mention figures 2.9–2.13 for full notation if asked.
+</aside>
+</body>
+</html>

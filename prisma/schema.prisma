@@ -1,0 +1,251 @@
+// Temariware — Telegram Mini App for university-student job postings
+// Prisma schema (Postgres for production, SQLite for dev)
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---- Users ----------------------------------------------------------------
+
+enum UserRole {
+  STUDENT
+  EMPLOYER
+  ADMIN
+}
+
+enum VerificationStatus {
+  NONE
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id                String              @id @default(cuid())
+  telegramId        String              @unique
+  username          String?
+  firstName         String?
+  lastName          String?
+  photoUrl          String?
+  role              UserRole            @default(STUDENT)
+  language          String              @default("en") // en | am | or
+  // student profile
+  university        String?
+  fieldOfStudy      String?
+  year              Int?
+  fullName          String?
+  phone             String?
+  cvUrl             String?
+  bio               String?
+  // MANDATORY student documents (required to apply to any job)
+  nationalIdNumber  String?   // Fayda / Kebele ID number
+  nationalIdImage   String?   // base64 image of the ID card
+  universityIdNumber String?  // student ID number
+  universityIdImage String?   // base64 image of student ID card
+  lastSemesterGradeImage String? // base64 image of grade report
+  profileComplete   Boolean  @default(false) // true when all mandatory docs are set
+  // employer profile
+  companyName       String?
+  companyTelegram   String?
+  verification      VerificationStatus  @default(NONE)
+  // admin
+  isAdmin           Boolean             @default(false)
+  // alerts
+  alertSubjects     String? // comma-separated
+  alertLocations    String? // comma-separated
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  jobs              Job[]
+  applications      Application[]
+  subscriptions     Subscription[]
+  verifications     VerificationRequest[]
+  payments          Payment[]
+}
+
+// ---- Jobs -----------------------------------------------------------------
+
+enum JobStatus {
+  PENDING_PAYMENT     // employer uploaded, awaiting payment screenshot
+  PENDING             // payment done, awaiting admin content review
+  APPROVED            // live in feed
+  REJECTED
+  CLOSED              // positions filled
+  EXPIRED
+}
+
+enum JobType {
+  TUTORING
+  FREELANCE
+  PART_TIME
+  FULL_TIME
+  INTERNSHIP
+  REMOTE
+}
+
+enum PaymentStatus {
+  NONE
+  PENDING   // screenshot uploaded, awaiting admin approval
+  APPROVED
+  REJECTED
+}
+
+model Job {
+  id            String      @id @default(cuid())
+  title         String
+  description   String
+  employerId    String
+  employer      User        @relation(fields: [employerId], references: [id])
+  // structured filters
+  subjects      String      // comma-separated, e.g. "Math,Physics"
+  gradeLevel    String?     // e.g. "Grade 5", "University", "Any"
+  location      String?
+  workType      JobType     @default(TUTORING)
+  salary        String?
+  currency      String      @default("ETB")
+  hoursPerWeek  String?
+  genderPref    String?
+  languageReq   String?
+  deadline      DateTime?
+  contactTelegram String?
+  status        JobStatus   @default(PENDING_PAYMENT)
+  rejectionReason String?
+  // hiring
+  positionsAvailable Int?   // null = unlimited, 1 = single hire
+  filledPositions    Int    @default(0)
+  // per-job application fee (overrides global Setting.applicationFee when set)
+  applicationFee     Float? // null = use global default; > 0 = custom fee for this job
+  // payment
+  paymentScreenshot String? // base64 data URL OR external URL
+  paymentStatus     PaymentStatus @default(NONE)
+  paymentReviewedBy String?
+  paymentReviewedAt DateTime?
+  paymentRejectionReason String?
+  // telegram message id of the broadcast (so we can edit/close it later)
+  broadcastMessageId String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  applications  Application[]
+  payments      Payment[]
+
+  @@index([status, createdAt])
+  @@index([employerId])
+  @@index([paymentStatus])
+}
+
+// ---- Applications ---------------------------------------------------------
+
+enum ApplicationStatus {
+  PENDING             // student applied, awaiting employer review
+  ACCEPTED            // employer wants to hire — waiting for payment
+  PAYMENT_PENDING     // student uploaded payment screenshot
+  HIRED               // admin approved payment — confirmed hired
+  REJECTED            // employer or admin rejected
+  CLOSED              // job closed before this applicant was hired
+}
+
+model Application {
+  id          String            @id @default(cuid())
+  jobId       String
+  job         Job               @relation(fields: [jobId], references: [id])
+  userId      String
+  user        User              @relation(fields: [userId], references: [id])
+  message     String?
+  status      ApplicationStatus @default(PENDING)
+  // payment
+  paymentScreenshot String?
+  paymentStatus     PaymentStatus @default(NONE)
+  paymentReviewedBy String?
+  paymentReviewedAt DateTime?
+  paymentRejectionReason String?
+  // hired tracking
+  hiredAt DateTime?
+  forwardedMessageId String?
+  acceptedAt DateTime?
+  createdAt   DateTime          @default(now())
+
+  @@unique([jobId, userId])
+  @@index([userId])
+  @@index([status])
+  @@index([paymentStatus])
+}
+
+// ---- Subscriptions (per-category alerts) ---------------------------------
+
+model Subscription {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  category  String   // e.g. "TUTORING", "FREELANCE", "ALL"
+  createdAt DateTime @default(now())
+
+  @@unique([userId, category])
+}
+
+// ---- Verification requests (employer verification flow) ------------------
+
+model VerificationRequest {
+  id          String              @id @default(cuid())
+  userId      String
+  user        User                @relation(fields: [userId], references: [id])
+  companyName String
+  contactTelegram String
+  proofUrl    String?
+  note        String?
+  status      VerificationStatus  @default(PENDING)
+  reviewedBy  String?
+  reviewNote  String?
+  createdAt   DateTime            @default(now())
+  reviewedAt  DateTime?
+
+  @@index([status])
+}
+
+// ---- Settings (singleton row) --------------------------------------------
+
+model Setting {
+  id                  String   @id @default("singleton")
+  jobPostFee          Float    @default(0)     // ETB employer pays to post
+  applicationFee      Float    @default(0)     // ETB student pays when accepted
+  paymentInstructions String   @default("Send payment via Telebirr to: 0911 23 45 67\\nThen upload the screenshot below.")
+  telebirrNumber      String?
+  cbeAccount          String?
+  chapaEnabled        Boolean  @default(false)
+  chapaPublicKey      String?
+  chapaSecretKey      String?
+  updatedAt           DateTime @updatedAt
+}
+
+// ---- Payments (audit log) ------------------------------------------------
+
+enum PaymentType {
+  JOB_POST        // employer paying to post a job
+  APPLICATION     // student paying after acceptance
+}
+
+model Payment {
+  id              String       @id @default(cuid())
+  userId          String
+  user            User         @relation(fields: [userId], references: [id])
+  jobId           String
+  job             Job          @relation(fields: [jobId], references: [id])
+  type            PaymentType
+  applicationId   String?      // for APPLICATION type
+  amount          Float
+  screenshotUrl   String?      // base64 OR external URL
+  status          PaymentStatus @default(PENDING)
+  reviewedBy      String?
+  reviewNote      String?
+  createdAt       DateTime     @default(now())
+  reviewedAt      DateTime?
+
+  @@index([status, type])
+  @@index([userId])
+}

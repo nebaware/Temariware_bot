@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1.0">
+  <title>Functional Requirements (Key) — Temariware Defense</title>
+  <link rel="stylesheet" href="global.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fr-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .fr-list li {
+      font-family: var(--font-body);
+      font-size: var(--fs-body-sm);
+      color: var(--primary);
+      line-height: 1.35;
+      padding-left: 0;
+      position: relative;
+    }
+    .fr-list li .code {
+      font-family: var(--font-num);
+      font-weight: 700;
+      color: var(--accent);
+      margin-right: 8px;
+    }
+    .note-line {
+      margin-top: 14px;
+      font-family: var(--font-body);
+      font-size: var(--fs-body-sm);
+      color: var(--primary);
+      border-left: 4px solid var(--accent);
+      padding: 10px 16px;
+      background: var(--surface);
+    }
+    .note-line b { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <section class="slide">
+    <h1 class="slide-title">Functional Requirements (Key)</h1>
+
+    <div class="slide-body">
+      <div class="two-col">
+        <div class="col">
+          <h3>FR-01 to FR-05</h3>
+          <ul class="fr-list">
+            <li><span class="code">FR-01:</span>Authenticate users via Telegram initData HMAC-SHA256</li>
+            <li><span class="code">FR-02:</span>Browse approved jobs without authentication</li>
+            <li><span class="code">FR-03:</span>Filter jobs by subject, location, type, gender, search</li>
+            <li><span class="code">FR-04:</span>Upload National ID, University ID, grade report with compression</li>
+            <li><span class="code">FR-05:</span>Block applications from students with incomplete profiles</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>FR-06 to FR-10</h3>
+          <ul class="fr-list">
+            <li><span class="code">FR-06:</span>Verified employers post jobs with all metadata</li>
+            <li><span class="code">FR-07:</span>Require payment screenshot when jobPostFee &gt; 0</li>
+            <li><span class="code">FR-08:</span>Admins approve/reject pending jobs with reason</li>
+            <li><span class="code">FR-09:</span>Broadcast approved jobs to @TEMARIWARE channel</li>
+            <li><span class="code">FR-10:</span>Push alerts to subscribers matching job category</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-line">
+        <b>Full list:</b> 20 functional requirements documented in Chapter 2, Table 2.1.
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Temariware — Senior Project Defense</span>
+      <span>15</span>
+    </div>
+  </section>
+
+  <aside data-notes class="hidden">
+    <ul>
+      <li>FR-04 (image compression) was the trickiest — Canvas API + JPEG quality tuning for &lt;1MB.</li>
+      <li>FR-05 enforces the document-complete rule via a Prisma-level check.</li>
+      <li>FR-07 ties payment to jobPostFee column — admin-configurable globally via Setting.</li>
+      <li>FR-09 broadcast uses the bot's sendMessage to @TEMARIWARE channel.</li>
+      <li>FR-10 push alerts iterate over Subscription rows matching the job category.</li>
+    </ul>
+  </aside>
+</body>
+</html>

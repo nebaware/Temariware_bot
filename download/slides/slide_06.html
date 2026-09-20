@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280, initial-scale=1" />
+  <title>Temariware — Specific Objectives</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="global.css" />
+  <style>
+    .obj-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      counter-reset: item;
+    }
+    .obj-list li {
+      font-family: var(--font-body);
+      font-size: 18pt;
+      color: var(--primary);
+      line-height: 1.35;
+      padding-left: 36px;
+      position: relative;
+      counter-increment: item;
+    }
+    .obj-list li::before {
+      content: counter(item) ".";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--font-num);
+    }
+    .obj-list.col-right { counter-reset: item 5; }
+    .col-h {
+      font-family: var(--font-heading);
+      font-size: 16pt;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--rule);
+    }
+  </style>
+</head>
+<body>
+  <section class="slide">
+    <h2 class="slide-title">Specific Objectives</h2>
+
+    <div class="slide-body">
+      <div class="two-col">
+        <div class="col">
+          <div class="col-h">Objectives 1 — 5</div>
+          <ol class="obj-list">
+            <li>Analyse limitations of existing informal Telegram job channels and elicit stakeholder requirements.</li>
+            <li>Design a multi-section Mini App UI (job feed, detail, post, applications, profile, admin) with 3-language support.</li>
+            <li>Design and implement a PostgreSQL database schema via Prisma ORM (users, jobs, applications, payments, subscriptions, verifications, settings).</li>
+            <li>Implement a Telegram Bot webhook handling 9 slash commands and pushing instant alerts.</li>
+            <li>Implement Telegram WebApp initData HMAC-SHA256 authentication.</li>
+          </ol>
+        </div>
+        <div class="col">
+          <div class="col-h">Objectives 6 — 10</div>
+          <ol class="obj-list col-right">
+            <li>Implement screenshot-based payment verification (job post fee + per-job application fee).</li>
+            <li>Implement mandatory document upload (National ID, University ID, grade report) with image compression.</li>
+            <li>Implement automatic job closure when positionsAvailable is reached.</li>
+            <li>Deploy on free-tier infrastructure (Vercel + Neon Postgres + Telegram Bot API).</li>
+            <li>Document the system per the Dire Dawa University industrial project guideline.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Temariware — Senior Project Defense</span>
+      <span>6 / 27</span>
+    </div>
+  </section>
+
+  <aside data-notes class="hidden">
+    <ul>
+      <li>All ten objectives were completed — the system is live and accepting users.</li>
+      <li>Objectives 1, 2, and 4 were finished earliest; objective 6 (payment verification) took the most iteration.</li>
+      <li>Objective 8 (auto-close) was a late addition requested by advisor for employer UX.</li>
+      <li>Objective 10 (documentation) is this defence document itself, plus the inline Prisma schema in Appendix C.</li>
+      <li>Transition: "Next, the scope of the project — what is included and what is deferred to v2."</li>
+    </ul>
+  </aside>
+</body>
+</html>

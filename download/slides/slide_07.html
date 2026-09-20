@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280, initial-scale=1" />
+  <title>Temariware — Scope of the Project</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="global.css" />
+  <style>
+    .scope-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .scope-list li {
+      font-family: var(--font-body);
+      font-size: 17pt;
+      color: var(--primary);
+      line-height: 1.35;
+      padding-left: 24px;
+      position: relative;
+    }
+    .scope-list li::before {
+      content: "\2022";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .col-h.in {
+      border-bottom-color: var(--primary);
+    }
+    .col-h.out {
+      border-bottom-color: var(--accent);
+      color: var(--accent);
+    }
+    .col-h {
+      font-family: var(--font-heading);
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <section class="slide">
+    <h2 class="slide-title">Scope of the Project</h2>
+
+    <div class="slide-body">
+      <div class="two-col">
+        <div class="col">
+          <div class="col-h in">In Scope</div>
+          <ul class="scope-list">
+            <li>Next.js Mini App with 6 primary views</li>
+            <li>Telegram bot with 9 slash commands</li>
+            <li>PostgreSQL database with 7 entities</li>
+            <li>HMAC-based authentication layer</li>
+            <li>Screenshot-based payment verification</li>
+            <li>Mandatory document upload with compression</li>
+            <li>Per-job configurable application fees</li>
+            <li>Automatic job closure on hiring target</li>
+            <li>Channel broadcast to @TEMARIWARE</li>
+            <li>Per-subscriber push alerts</li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="col-h out">Out of Scope (v2)</div>
+          <ul class="scope-list">
+            <li>Real Chapa / Telebirr API integration</li>
+            <li>Automated scraping of existing channels</li>
+            <li>In-app CV file storage (uses external links)</li>
+            <li>Email or SMS notifications</li>
+            <li>Employer dashboard with multi-job analytics</li>
+            <li>Saved/bookmarked jobs</li>
+            <li>Reporting beyond basic admin stats</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Temariware — Senior Project Defense</span>
+      <span>7 / 27</span>
+    </div>
+  </section>
+
+  <aside data-notes class="hidden">
+    <ul>
+      <li>In Scope items are all shipped and live in production.</li>
+      <li>Out of Scope items are deferred — each was a conscious cut to fit the 12-week timeline.</li>
+      <li>Chapa / Telebirr API requires business registration we did not have — deferred to v2.</li>
+      <li>Scraping was deferred to avoid legal ambiguity around existing channels.</li>
+      <li>Analytics and bookmarks were nice-to-haves that the advisor agreed to defer.</li>
+    </ul>
+  </aside>
+</body>
+</html>

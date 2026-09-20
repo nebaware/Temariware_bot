@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1.0">
+  <title>Business Rules &amp; Constraints — Temariware Defense</title>
+  <link rel="stylesheet" href="global.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .col-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .col-bullets li { font-family: var(--font-body); font-size: 18pt; color: var(--primary); line-height: 1.35; padding-left: 22px; position: relative; }
+    .col-bullets li::before { content: "\2022"; position: absolute; left: 0; top: 0; font-weight: 700; color: var(--accent); }
+  </style>
+</head>
+<body>
+  <section class="slide">
+    <h1 class="slide-title">Business Rules &amp; Constraints</h1>
+
+    <div class="slide-body">
+      <div class="two-col">
+        <div class="col">
+          <h3>Key Business Rules</h3>
+          <ul class="col-bullets">
+            <li>Only verified employers or admins can post jobs.</li>
+            <li>Students cannot apply until profile is complete (3 documents uploaded).</li>
+            <li>One application per student per job (unique constraint).</li>
+            <li>Job posting requires payment screenshot (default 500 ETB).</li>
+            <li>Application fees are per-job configurable by employer.</li>
+            <li>Auto-close when filledPositions reaches positionsAvailable.</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Key Constraints</h3>
+          <ul class="col-bullets">
+            <li>Free-tier infrastructure only (zero recurring cost).</li>
+            <li>Screenshot-based payment (no Chapa API in v1).</li>
+            <li>Images stored as base64 in PostgreSQL (1MB max).</li>
+            <li>Mini App runs inside Telegram WebApp container.</li>
+            <li>No web_app buttons in channel posts (only URL buttons).</li>
+            <li>Three languages with runtime switching.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Temariware — Senior Project Defense</span>
+      <span>17</span>
+    </div>
+  </section>
+
+  <aside data-notes class="hidden">
+    <ul>
+      <li>The "one application per student per job" rule (Prisma unique constraint) shaped the Application table design.</li>
+      <li>The base64 image storage constraint drove the client-side Canvas compression requirement.</li>
+      <li>Telegram's URL-button-only limitation for channel posts shaped the broadcast UX.</li>
+      <li>Free-tier constraint was a hard requirement, not a preference — every architectural decision was filtered through it.</li>
+    </ul>
+  </aside>
+</body>
+</html>

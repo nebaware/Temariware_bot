@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1.0">
+  <title>Work Breakdown Structure — Temariware Defense</title>
+  <link rel="stylesheet" href="global.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tbl.wbs td:first-child { font-family: var(--font-num); font-weight: 700; white-space: nowrap; width: 80px; }
+    .tbl.wbs th:nth-child(3), .tbl.wbs td:nth-child(3) { width: 130px; }
+    .summary-line {
+      margin-top: 18px;
+      font-family: var(--font-body);
+      font-size: var(--fs-body-sm);
+      color: var(--primary);
+      font-weight: 700;
+      border-left: 4px solid var(--accent);
+      padding: 10px 16px;
+      background: var(--surface);
+    }
+  </style>
+</head>
+<body>
+  <section class="slide">
+    <h1 class="slide-title">Work Breakdown Structure</h1>
+
+    <div class="slide-body">
+      <table class="tbl wbs">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Work Package</th>
+            <th>Duration</th>
+            <th>Deliverables</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>WP1</td>
+            <td>Requirements Elicitation &amp; Analysis</td>
+            <td>2 weeks</td>
+            <td>Requirements doc, use cases</td>
+          </tr>
+          <tr>
+            <td>WP2</td>
+            <td>System Design</td>
+            <td>2 weeks</td>
+            <td>Schema, API contracts, UI mockups</td>
+          </tr>
+          <tr>
+            <td>WP3</td>
+            <td>Database &amp; Backend Implementation</td>
+            <td>3 weeks</td>
+            <td>Prisma schema, API routes, auth</td>
+          </tr>
+          <tr>
+            <td>WP4</td>
+            <td>Frontend Mini App Implementation</td>
+            <td>3 weeks</td>
+            <td>All views, navigation, i18n</td>
+          </tr>
+          <tr>
+            <td>WP5</td>
+            <td>Bot Webhook &amp; Channel Integration</td>
+            <td>1 week</td>
+            <td>Bot commands, broadcasts, alerts</td>
+          </tr>
+          <tr>
+            <td>WP6</td>
+            <td>Testing, Deployment, Documentation</td>
+            <td>1 week</td>
+            <td>Deployed app, this document</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="summary-line">
+        Total: ~16 person-weeks across 4 team members over 12 calendar weeks.
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Temariware — Senior Project Defense</span>
+      <span>12</span>
+    </div>
+  </section>
+
+  <aside data-notes class="hidden">
+    <ul>
+      <li>WP3 and WP4 were the most time-consuming — backend schema and frontend views overlapped heavily.</li>
+      <li>WP5 was surprisingly fast thanks to Telegram Bot API's webhook model.</li>
+      <li>Testing window (WP6) was tight — iterative testing during WP3/WP4 absorbed most of the QA load.</li>
+      <li>12 calendar weeks matched the academic semester schedule exactly.</li>
+    </ul>
+  </aside>
+</body>
+</html>

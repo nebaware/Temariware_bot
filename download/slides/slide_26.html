@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 26 — Conclusion & Future Work</title>
+<link rel="stylesheet" href="global.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .slide .bullets li { font-size: 16pt; line-height: 1.3; }
+  .slide .two-col { gap: 24px; }
+  .slide .col h3 { font-size: 16pt; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1 class="slide-title">Conclusion &amp; Future Work</h1>
+
+  <div class="slide-body">
+    <div class="two-col">
+      <div class="col">
+        <h3>Conclusion</h3>
+        <ul class="bullets">
+          <li>Addresses structural gaps in Ethiopia's informal Telegram job market</li>
+          <li>All 10 specific objectives achieved</li>
+          <li>System deployed, live, accepting real users on free-tier infrastructure</li>
+          <li>Combines job matching, document verification, and payment workflow</li>
+          <li>Demonstrates zero-cost production-grade software in Ethiopia</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Future Work (v2)</h3>
+        <ul class="bullets">
+          <li>Integrate Chapa API for automated payment verification</li>
+          <li>Migrate image storage to Supabase Storage / S3</li>
+          <li>Add in-app messaging between students and employers</li>
+          <li>Automated scraping from existing Telegram channels</li>
+          <li>Employer dashboard with multi-job analytics</li>
+          <li>Expand to other East African markets</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<aside data-notes class="hidden">
+- Headline: all 10 objectives met on free-tier infra
+- First v2 priority: Chapa API to remove manual payment bottleneck
+- Second: image storage migration from base64 in Postgres
+- In-app messaging reduces leakage to personal Telegram chats
+- East African expansion proves architecture is region-portable
+</aside>
+</body>
+</html>

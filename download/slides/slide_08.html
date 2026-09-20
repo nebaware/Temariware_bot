@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280, initial-scale=1" />
+  <title>Temariware — Limitations</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="global.css" />
+</head>
+<body>
+  <section class="slide">
+    <h2 class="slide-title">Limitations</h2>
+
+    <div class="slide-body">
+      <ul class="bullets">
+        <li>Payment verification is manual (screenshot review) — introduces hours of latency, single point of failure.</li>
+        <li>System depends entirely on Telegram — no Telegram account, no access; outages affect availability.</li>
+        <li>Images stored as base64 in PostgreSQL (not object storage) — 1MB practical limit per image.</li>
+        <li>No automated authenticity checks on uploaded IDs — relies on admin visual inspection.</li>
+        <li>Currently supports only the Ethiopian market and three languages.</li>
+        <li>No in-app dispute resolution mechanism — handled via external Telegram chat.</li>
+      </ul>
+    </div>
+
+    <div class="slide-footer">
+      <span>Temariware — Senior Project Defense</span>
+      <span>8 / 27</span>
+    </div>
+  </section>
+
+  <aside data-notes class="hidden">
+    <ul>
+      <li>Manual payment verification is the biggest limitation — mitigated in v2 with Chapa API.</li>
+      <li>Telegram dependency is accepted as a trade-off — the platform's reach justifies it.</li>
+      <li>Base64 image storage is fine for current scale but should move to S3 / Supabase in v2.</li>
+      <li>ID verification stays manual in v1 — admin review window is 24h SLA.</li>
+      <li>Dispute resolution via Telegram is acceptable for v1; will be in-app in v2.</li>
+    </ul>
+  </aside>
+</body>
+</html>

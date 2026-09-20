@@ -1,0 +1,177 @@
+{
+  "design": {
+    "title": "Temariware Senior Project Defense",
+    "style_name": "Dire Dawa University Academic Defense (Arial/White/Black per Project Guideline Ch.4)",
+    "palette": { "background": "#FFFFFF", "primary": "#000000", "accent": "#1F4E79" },
+    "typography": { "heading": "Arial", "body": "Arial", "numeric": "Roboto Mono" },
+    "reference": "Dire Dawa University Project Guideline Chapter 4 — white background, Arial font, black text, 30pt content titles, 20-24pt body, max 36pt title slide, max 27 slides"
+  },
+  "global_css_path": "/home/z/my-project/download/slides/global.css",
+  "slides_dir": "/home/z/my-project/download/slides",
+  "language": "en",
+  "speaker_notes": "short",
+  "slides": [
+    {
+      "title": "Cover",
+      "layout": "cover",
+      "output_path": "/home/z/my-project/download/slides/slide_01.html",
+      "task_brief": "Cover/title slide for senior project defense. Centered layout. Content (verbatim):\n\nInstitution block (top, uppercase, 22pt bold):\n- DIRE DAWA UNIVERSITY\n- INSTITUTE OF TECHNOLOGY\n- SCHOOL OF COMPUTING\n- DEPARTMENT OF SOFTWARE ENGINEERING\n\nProject label (uppercase, letter-spaced, 18pt bold):\n- SENIOR PROJECT DEFENSE\n\nProject title (36pt bold, max width ~1000px):\n- Design and Implementation of Temariware: A Telegram Mini App for University Student Job Matching in Ethiopia\n\nMeta block (18pt):\n- By: Nebiyu Tsegaye\n- ID: 1501332\n- Advisor: [Advisor Name (Title)]\n- Date: [Month, Year]\n- Dire Dawa, Ethiopia\n\nSpeaker notes: brief intro of yourself, your background (Software Engineering student, internship at Afronex Tech Company), and the project."
+    },
+    {
+      "title": "Outline",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_02.html",
+      "task_brief": "Slide title: 'Outline' (30pt bold). Two-column layout with 12 numbered items across two columns (6 left, 6 right):\n\nLeft column (1-6):\n1. Introduction & Background\n2. Problem Statement\n3. Objectives\n4. Scope & Limitations\n5. Methodology & Tools\n6. Significance\n\nRight column (7-12):\n7. Work Breakdown & Feasibility\n8. System Requirements\n9. System Analysis\n10. Software Architecture\n11. Detailed Design\n12. Conclusion & Future Work\n\nSpeaker notes: brief hints on the deck's flow."
+    },
+    {
+      "title": "Introduction & Background",
+      "layout": "bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_03.html",
+      "task_brief": "Slide title: 'Introduction & Background'. Body bullets (22pt, max 6):\n\n- Telegram is the dominant messaging platform for Ethiopian university students, with millions of daily active users.\n- Informal job channels (Afriwork, Yegna Tutors Harrar) post tutoring, freelance, and part-time roles daily.\n- These channels are free, instant, and reach a large targeted audience.\n- However, posts are unstructured free text with no filtering, no archive, and no verification.\n- Temariware proposes a structured Telegram Mini App + Bot to solve these gaps.\n- Combines the reach of Telegram with the structure of a traditional job-matching platform.\n\nSpeaker notes: 3-5 bullet hints on why this background motivates the project."
+    },
+    {
+      "title": "Statement of the Problem",
+      "layout": "bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_04.html",
+      "task_brief": "Slide title: 'Statement of the Problem'. Body bullets (22pt, max 6):\n\n- Job posts are unstructured free text — impossible to filter by subject, location, or salary.\n- No persistent archive — opportunities disappear from chat history within hours.\n- Neither employers nor students are verified — scams and no-shows are common.\n- Application process is highly manual — students forward CVs repeatedly, no tracking.\n- No payment mechanism — channels cannot sustain themselves or filter serious applicants.\n- Existing platforms (EthioJobs, Ezega) focus on full-time graduate roles, not student part-time work.\n\nSpeaker notes: brief hints on each pain point with a real example."
+    },
+    {
+      "title": "General Objective",
+      "layout": "key-message",
+      "output_path": "/home/z/my-project/download/slides/slide_05.html",
+      "task_brief": "Slide title: 'General Objective'. Centered key message in a callout block (large, 24pt):\n\n'To design, develop, and deploy a Telegram Mini App and Bot called Temariware that connects Ethiopian university students with verified tutoring, freelance, part-time, and full-time job opportunities, while providing integrated payment verification, mandatory document checks, and automated hiring workflow management.'\n\nBelow the callout, three small stat blocks showing the scope:\n- 3 user roles (Student, Employer, Admin)\n- 3 languages (EN, Amharic, Afaan Oromoo)\n- 0 ETB monthly cost (free-tier infrastructure)\n\nSpeaker notes: hints on emphasising the integration of payment + verification + workflow."
+    },
+    {
+      "title": "Specific Objectives",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_06.html",
+      "task_brief": "Slide title: 'Specific Objectives'. Two-column layout with 10 numbered objectives across two columns (5 left, 5 right):\n\nLeft column (1-5):\n1. Analyse limitations of existing informal Telegram job channels and elicit stakeholder requirements.\n2. Design a multi-section Mini App UI (job feed, detail, post, applications, profile, admin) with 3-language support.\n3. Design and implement a PostgreSQL database schema via Prisma ORM (users, jobs, applications, payments, subscriptions, verifications, settings).\n4. Implement a Telegram Bot webhook handling 9 slash commands and pushing instant alerts.\n5. Implement Telegram WebApp initData HMAC-SHA256 authentication.\n\nRight column (6-10):\n6. Implement screenshot-based payment verification (job post fee + per-job application fee).\n7. Implement mandatory document upload (National ID, University ID, grade report) with image compression.\n8. Implement automatic job closure when positionsAvailable is reached.\n9. Deploy on free-tier infrastructure (Vercel + Neon Postgres + Telegram Bot API).\n10. Document the system per the Dire Dawa University industrial project guideline.\n\nSpeaker notes: brief hints on which objectives were completed vs in-progress."
+    },
+    {
+      "title": "Scope of the Project",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_07.html",
+      "task_brief": "Slide title: 'Scope of the Project'. Two-column layout with 'In Scope' (left) and 'Out of Scope' (right) headers:\n\nLeft column — In Scope:\n- Next.js Mini App with 6 primary views\n- Telegram bot with 9 slash commands\n- PostgreSQL database with 7 entities\n- HMAC-based authentication layer\n- Screenshot-based payment verification\n- Mandatory document upload with compression\n- Per-job configurable application fees\n- Automatic job closure on hiring target\n- Channel broadcast to @TEMARIWARE\n- Per-subscriber push alerts\n\nRight column — Out of Scope (v2):\n- Real Chapa / Telebirr API integration\n- Automated scraping of existing channels\n- In-app CV file storage (uses external links)\n- Email or SMS notifications\n- Employer dashboard with multi-job analytics\n- Saved/bookmarked jobs\n- Reporting beyond basic admin stats\n\nSpeaker notes: hints on why each out-of-scope item was deferred."
+    },
+    {
+      "title": "Limitations",
+      "layout": "bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_08.html",
+      "task_brief": "Slide title: 'Limitations'. Body bullets (22pt, max 6):\n\n- Payment verification is manual (screenshot review) — introduces hours of latency, single point of failure.\n- System depends entirely on Telegram — no Telegram account, no access; outages affect availability.\n- Images stored as base64 in PostgreSQL (not object storage) — 1MB practical limit per image.\n- No automated authenticity checks on uploaded IDs — relies on admin visual inspection.\n- Currently supports only the Ethiopian market and three languages.\n- No in-app dispute resolution mechanism — handled via external Telegram chat.\n\nSpeaker notes: brief hints on mitigation strategies for each limitation."
+    },
+    {
+      "title": "Methodology & Approach",
+      "layout": "bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_09.html",
+      "task_brief": "Slide title: 'Methodology & Approach'. Body bullets (22pt, max 6):\n\n- Object-Oriented Software Development approach (per university guideline).\n- Iterative and incremental development process — each iteration produces a working slice.\n- Loosely based on the Agile Unified Process — lightweight upfront design + continuous integration.\n- Five phases: Requirements, Design, Implementation, Testing, Deployment.\n- Each phase ends with advisor review milestone for continuous feedback.\n- Continuous deployment to Vercel staging environment throughout development.\n\nSpeaker notes: hints on how the iterative approach handled changing requirements."
+    },
+    {
+      "title": "Techniques & Tools",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_10.html",
+      "task_brief": "Slide title: 'Techniques & Tools'. Two-column layout:\n\nLeft column — Techniques:\n- Object-Oriented Analysis (entities, relationships)\n- Use Case Modelling (actors + use cases)\n- CRC Modelling (class-responsibility-collaboration)\n- Sequence Diagrams (multi-step flows)\n- Activity Diagrams (parallel + conditional flows)\n- Client-side image compression (Canvas API)\n- HMAC-SHA256 cryptographic validation\n\nRight column — Tools:\n- Next.js 16 with App Router\n- React 19 + TypeScript 5\n- Tailwind CSS 4 + shadcn/ui\n- Prisma ORM 6\n- PostgreSQL on Neon (Frankfurt)\n- Vercel (deployment + CDN)\n- Telegram Bot API\n- Bun (local dev runtime)\n- Git + GitHub (version control)\n\nSpeaker notes: brief hints on why each tool was chosen (free, well-documented, etc.)."
+    },
+    {
+      "title": "Significance of the Project",
+      "layout": "bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_11.html",
+      "task_brief": "Slide title: 'Significance of the Project'. Body bullets (22pt, max 6) covering three stakeholder groups:\n\n- For Students: reduces friction of finding part-time work; subscribe to subject/location alerts; apply with one tap using pre-verified profile; mandatory documents build trust with employers.\n- For Employers: structured applicant tracking; per-job application fee filters casual browsers; review documents in one panel; accept/reject with one tap; auto-close positions when hiring target met.\n- For the Ecosystem: reference implementation of a production Telegram Mini App on free-tier infrastructure; demonstrates youth entrepreneurship without upfront capital; formalises a previously informal labour market.\n- Creates data on youth employment patterns for future research.\n- Sustainable revenue model through configurable fees.\n- Multilingual (EN/AM/OR) ensures accessibility across Ethiopia.\n\nSpeaker notes: hints on which significance point resonates most with the committee."
+    },
+    {
+      "title": "Work Breakdown Structure",
+      "layout": "table",
+      "output_path": "/home/z/my-project/download/slides/slide_12.html",
+      "task_brief": "Slide title: 'Work Breakdown Structure'. Render a table (class 'tbl') with 6 work packages. Columns: ID | Work Package | Duration | Deliverables. Body rows:\n\n- WP1 | Requirements Elicitation & Analysis | 2 weeks | Requirements doc, use cases\n- WP2 | System Design | 2 weeks | Schema, API contracts, UI mockups\n- WP3 | Database & Backend Implementation | 3 weeks | Prisma schema, API routes, auth\n- WP4 | Frontend Mini App Implementation | 3 weeks | All views, navigation, i18n\n- WP5 | Bot Webhook & Channel Integration | 1 week | Bot commands, broadcasts, alerts\n- WP6 | Testing, Deployment, Documentation | 1 week | Deployed app, this document\n\nBelow the table, a one-line summary: 'Total: ~16 person-weeks across 4 team members over 12 calendar weeks.'\n\nSpeaker notes: hints on which work packages were most time-consuming."
+    },
+    {
+      "title": "Feasibility Analysis",
+      "layout": "table",
+      "output_path": "/home/z/my-project/download/slides/slide_13.html",
+      "task_brief": "Slide title: 'Feasibility Analysis'. Render a table (class 'tbl') with 4 rows. Columns: Dimension | Analysis | Verdict. Body rows:\n\n- Technical | All tools are free, open-source, well-documented. Team has relevant coursework background. | Feasible\n- Economic | Zero monthly recurring cost (Vercel free + Neon free + Telegram Bot API free). Only cost is team time. | Feasible\n- Operational | Aligns with existing Telegram usage habits. No user training required. Document verification is intuitive. | Feasible\n- Schedule | 12-week timeline with 4 team members. Iterative development with continuous integration. | Feasible (tight)\n\nBelow the table, a one-line callout: 'Main risk: single administrator for payment verification — mitigated in v2 via Chapa API integration.'\n\nSpeaker notes: brief hints on how schedule risk was managed."
+    },
+    {
+      "title": "Current System Description",
+      "layout": "bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_14.html",
+      "task_brief": "Slide title: 'Current System Description'. Body bullets (22pt, max 6):\n\n- Informal Telegram channels (Afriwork, Yegna Tutors Harrar) broadcast job posts as free text.\n- Employer composes a free-text message and forwards to channel operator's bot.\n- Operator manually reviews, reformats, and publishes to the channel.\n- Interested students forward the post + CV to employer's personal Telegram.\n- Employer reviews applications in private chat, contacts candidates directly.\n- Payments (when required) made via Telebirr with no formal record.\n\nSpeaker notes: brief hints on a real example from each channel."
+    },
+    {
+      "title": "Functional Requirements (Key)",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_15.html",
+      "task_brief": "Slide title: 'Functional Requirements (Key)'. Two-column layout with 10 key FRs (out of 20 total):\n\nLeft column (FR-01 to FR-05):\n- FR-01: Authenticate users via Telegram initData HMAC-SHA256\n- FR-02: Browse approved jobs without authentication\n- FR-03: Filter jobs by subject, location, type, gender, search\n- FR-04: Upload National ID, University ID, grade report with compression\n- FR-05: Block applications from students with incomplete profiles\n\nRight column (FR-06 to FR-10):\n- FR-06: Verified employers post jobs with all metadata\n- FR-07: Require payment screenshot when jobPostFee > 0\n- FR-08: Admins approve/reject pending jobs with reason\n- FR-09: Broadcast approved jobs to @TEMARIWARE channel\n- FR-10: Push alerts to subscribers matching job category\n\nBelow the columns, one-line note: 'Full list: 20 functional requirements documented in Chapter 2, Table 2.1.'\n\nSpeaker notes: brief hints on which FRs were most challenging to implement."
+    },
+    {
+      "title": "Non-Functional Requirements",
+      "layout": "table",
+      "output_path": "/home/z/my-project/download/slides/slide_16.html",
+      "task_brief": "Slide title: 'Non-Functional Requirements'. Render a table (class 'tbl') with 7 rows. Columns: ID | Category | Requirement. Body rows:\n\n- NFR-01 | Performance | API response < 500ms (95th percentile); Mini App first paint < 2s on 3G\n- NFR-02 | Security | HMAC-SHA256 auth; HTTPS only; no plaintext payment data\n- NFR-03 | Usability | 360px-wide screen support; 3 languages; 44px touch targets; haptic feedback\n- NFR-04 | Reliability | 99% uptime (Vercel SLA); graceful error handling\n- NFR-05 | Scalability | Serverless scales to 1000 concurrent users on free tier\n- NFR-06 | Maintainability | TypeScript throughout; modular components; lint-clean\n- NFR-07 | Compatibility | Telegram mobile (iOS/Android), Desktop, Web; modern browser fallback\n\nSpeaker notes: brief hints on how each NFR was tested."
+    },
+    {
+      "title": "Business Rules & Constraints",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_17.html",
+      "task_brief": "Slide title: 'Business Rules & Constraints'. Two-column layout:\n\nLeft column — Key Business Rules:\n- Only verified employers or admins can post jobs.\n- Students cannot apply until profile is complete (3 documents uploaded).\n- One application per student per job (unique constraint).\n- Job posting requires payment screenshot (default 500 ETB).\n- Application fees are per-job configurable by employer.\n- Auto-close when filledPositions reaches positionsAvailable.\n\nRight column — Key Constraints:\n- Free-tier infrastructure only (zero recurring cost).\n- Screenshot-based payment (no Chapa API in v1).\n- Images stored as base64 in PostgreSQL (1MB max).\n- Mini App runs inside Telegram WebApp container.\n- No web_app buttons in channel posts (only URL buttons).\n- Three languages with runtime switching.\n\nSpeaker notes: brief hints on which constraint shaped the design most."
+    },
+    {
+      "title": "Essential Use Case Model",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_18.html",
+      "task_brief": "Slide title: 'Essential Use Case Model'. Body: 'Four primary actors, fifteen use cases' as a sub-heading. Two-column layout listing use cases by actor:\n\nLeft column — Student & Employer:\n- Student: Browse Job Feed, View Job Detail, Complete Profile, Apply to Job, Subscribe to Alerts, Upload Payment, View My Applications\n- Employer: Post Job, Review Applicants, Accept Applicant, Reject Applicant, Verify Employer\n\nRight column — Administrator & Bot:\n- Administrator: Approve Job, Approve Payment, Approve Verification, Configure Settings\n- Telegram Bot: Handle Slash Commands, Push Job Alerts, Broadcast to Channel\n\nBelow: callout block — 'Include relationship: Apply to Job includes Check Profile Complete. Extend relationship: Post Job extends Upload Payment Screenshot (only when fee > 0). Full use case diagram in Chapter 2, Figure 2.7.'\n\nSpeaker notes: brief hints on the most important use case path."
+    },
+    {
+      "title": "Conceptual Class Model",
+      "layout": "bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_19.html",
+      "task_brief": "Slide title: 'Conceptual Class Model'. Body bullets (22pt, max 6):\n\n- Seven primary classes: User, Job, Application, Subscription, VerificationRequest, Setting, Payment.\n- A User has many Jobs (as employer), many Applications (as student), many Subscriptions, and may have one VerificationRequest.\n- A Job has many Applications and may have associated Payments.\n- An Application belongs to one User and one Job, with a unique constraint on (jobId, userId).\n- A Setting is a singleton (single row) storing global configuration.\n- Payment is an audit log linking a User, Job, and optionally an Application.\n\nBelow: callout — 'Full class diagram with attributes and operations in Chapter 3, Figure 3.5. Complete Prisma schema in Appendix C.'\n\nSpeaker notes: brief hints on why a singleton Setting was chosen."
+    },
+    {
+      "title": "Sequence & Activity Diagrams",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_20.html",
+      "task_brief": "Slide title: 'Sequence & Activity Diagrams'. Two-column layout:\n\nLeft column — Sequence Diagrams:\n- Apply to Job: Mini App → Jobs API → Applications API → Database → Employer (Telegram notification)\n- Accept Applicant and Pay: Employer → Accept API → Student (notification) → Pay API → Admin → Approve Payment API\n- Approve Job and Broadcast: Admin → Approve API → Channel (Telegram Bot API) → Subscribers (push)\n\nRight column — Activity Diagrams:\n- Job Posting & Approval Flow: submit → payment screenshot → admin review → approve/reject → broadcast → alerts\n- Application Lifecycle: PENDING → ACCEPTED → PAYMENT_PENDING → HIRED (or REJECTED/CLOSED)\n- Auto-close trigger: when filledPositions = positionsAvailable, mark job CLOSED, notify all parties\n\nBelow: callout — 'Full diagrams in Chapter 2, Figures 2.9–2.13.'\n\nSpeaker notes: brief hints on which flow was hardest to design."
+    },
+    {
+      "title": "Software Architecture",
+      "layout": "bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_21.html",
+      "task_brief": "Slide title: 'Software Architecture'. Body bullets (22pt, max 6):\n\n- Selected style: Layered Architecture with four layers — Presentation, Application, Domain, Persistence.\n- Presentation Layer: React 19 components (Mini App views).\n- Application Layer: Next.js API routes (controllers).\n- Domain Layer: Prisma models + business logic.\n- Persistence Layer: PostgreSQL on Neon (Frankfurt, eu-central-1).\n- Chosen for clear separation of concerns, Next.js convention alignment, team familiarity.\n\nBelow: callout — 'Alternatives considered: Microkernel (too complex), Event-Driven (unnecessary complexity), Serverless-First (already adopted at deployment). Full comparison in Chapter 3, Table 3.1.'\n\nSpeaker notes: brief hints on why layered was chosen over microservices."
+    },
+    {
+      "title": "Component & Deployment",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_22.html",
+      "task_brief": "Slide title: 'Component & Deployment'. Two-column layout:\n\nLeft column — Components:\n- Next.js Mini App (Vercel) — frontend + API routes\n- Telegram Bot Webhook (within Next.js) — receives updates\n- PostgreSQL Database (Neon Frankfurt) — data persistence\n- Telegram Bot API (external) — message sending + initData\n- @TEMARIWARE Channel (external) — public job broadcast\n\nRight column — Deployment Nodes:\n- Vercel Edge Network — runs Next.js globally\n- Neon Cloud (Frankfurt) — PostgreSQL, closest to Ethiopia\n- Telegram Cloud — Bot API + channel hosting\n- End users access via Telegram client (mobile/desktop/web)\n- Webhook: Telegram Cloud → Vercel via HTTPS\n\nBelow: callout — 'Full diagrams in Chapter 3, Figures 3.2 and 3.3.'\n\nSpeaker notes: brief hints on why Frankfurt region was chosen."
+    },
+    {
+      "title": "Persistent Data Model",
+      "layout": "table",
+      "output_path": "/home/z/my-project/download/slides/slide_23.html",
+      "task_brief": "Slide title: 'Persistent Data Model'. Render a table (class 'tbl') with 7 rows. Columns: Table | Key Fields. Body rows:\n\n- User | id, telegramId, username, role, language, profile fields, document fields, verification, isAdmin\n- Job | id, title, description, subjects, location, workType, salary, positionsAvailable, filledPositions, applicationFee, status, payment fields\n- Application | id, jobId, userId, message, status, paymentScreenshot, paymentStatus, hiredAt\n- Subscription | id, userId, category\n- VerificationRequest | id, userId, companyName, contactTelegram, proofUrl, status\n- Setting | id (singleton), jobPostFee, applicationFee, paymentInstructions, telebirrNumber, cbeAccount\n- Payment | id, userId, jobId, type, applicationId, amount, screenshotUrl, status, reviewedBy\n\nBelow: callout — 'Full entity-relationship diagram in Chapter 3, Figure 3.4. Complete Prisma schema in Appendix C.'\n\nSpeaker notes: brief hints on the most important relationship."
+    },
+    {
+      "title": "Detailed Design",
+      "layout": "bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_24.html",
+      "task_brief": "Slide title: 'Detailed Design'. Body bullets (22pt, max 6):\n\n- Design-Level Class Diagram: refines conceptual model with attributes, operations, visibility (Figure 3.5).\n- Collaboration Diagrams: Apply to Job, Post Job and Pay, Approve Payment and Hire (Figures 3.6–3.8).\n- State Chart Diagram: Application lifecycle — PENDING → ACCEPTED → PAYMENT_PENDING → HIRED (or REJECTED/CLOSED) (Figure 3.9).\n- User Interface Diagrams: 6 views — Home, Job Detail, Post Job, Applications, Profile, Admin (Figures 3.10–3.15).\n- Class Type Architecture: Entity (7 classes), Boundary (7 classes), Control (6 classes) — ECB pattern.\n- All design artefacts provide a complete blueprint for implementation handoff.\n\nSpeaker notes: brief hints on which design artefact was most useful during implementation."
+    },
+    {
+      "title": "Implementation Status",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_25.html",
+      "task_brief": "Slide title: 'Implementation Status'. Two-column layout:\n\nLeft column — Live Deployment:\n- Bot: @temariwarebot (live on Telegram)\n- Channel: @TEMARIWARE (broadcasts working)\n- Mini App: deployed on Vercel (temariware-rouge.vercel.app)\n- Database: Neon Postgres (Frankfurt)\n- Webhook: configured and verified\n- All 9 bot commands functional\n\nRight column — Implemented Features:\n- 6 Mini App views with 3-language support\n- Job posting with payment screenshot\n- Application with mandatory documents\n- Employer accept/reject applicants\n- Student payment upload after acceptance\n- Admin payment approval + auto-hire\n- Auto-close on positions filled\n- Channel broadcast + subscriber alerts\n\nBelow: callout — 'System is production-ready and accepting real users.'\n\nSpeaker notes: brief hints on what to demo live if asked."
+    },
+    {
+      "title": "Conclusion & Future Work",
+      "layout": "two-col-bullets",
+      "output_path": "/home/z/my-project/download/slides/slide_26.html",
+      "task_brief": "Slide title: 'Conclusion & Future Work'. Two-column layout:\n\nLeft column — Conclusion:\n- Temariware successfully addresses the structural gaps in Ethiopia's informal Telegram job market.\n- All 10 specific objectives were achieved.\n- System is deployed, live, and accepting real users on free-tier infrastructure.\n- Combines structured job matching, document verification, and payment workflow in one platform.\n- Demonstrates that production-grade software can be built with zero recurring cost in Ethiopia.\n\nRight column — Future Work (v2):\n- Integrate Chapa / Telebirr API for automated payment verification.\n- Migrate image storage to Supabase Storage or AWS S3.\n- Add in-app messaging between students and employers.\n- Automated scraping and import from existing Telegram channels.\n- Add employer dashboard with multi-job analytics.\n- Add saved/bookmarked jobs with daily digest.\n- Expand to other East African markets.\n\nSpeaker notes: brief hints on what you'd improve first."
+    },
+    {
+      "title": "Thank You / Q&A",
+      "layout": "closing",
+      "output_path": "/home/z/my-project/download/slides/slide_27.html",
+      "task_brief": "Closing slide. Centered layout. Content:\n\nLarge text (48pt bold): 'Thank You'\nBelow (24pt muted): 'Questions & Answers'\n\nBelow that, contact block (18pt):\n- Nebiyu Tsegaye\n- ID: 1501332\n- Department of Software Engineering\n- Dire Dawa University\n- temariwarebot on Telegram\n\nSpeaker notes: thank the committee, invite questions, mention you can demo the live bot if asked."
+    }
+  ]
+}

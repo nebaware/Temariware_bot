@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 24 — Detailed Design</title>
+<link rel="stylesheet" href="global.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .slide .bullets li b { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1 class="slide-title">Detailed Design</h1>
+
+  <div class="slide-body">
+    <ul class="bullets">
+      <li><b>Design-Level Class Diagram:</b> refines conceptual model with attributes, operations, visibility (Figure 3.5).</li>
+      <li><b>Collaboration Diagrams:</b> Apply to Job, Post Job and Pay, Approve Payment and Hire (Figures 3.6–3.8).</li>
+      <li><b>State Chart Diagram:</b> Application lifecycle — PENDING → ACCEPTED → PAYMENT_PENDING → HIRED (or REJECTED/CLOSED) (Figure 3.9).</li>
+      <li><b>User Interface Diagrams:</b> 6 views — Home, Job Detail, Post Job, Applications, Profile, Admin (Figures 3.10–3.15).</li>
+      <li><b>Class Type Architecture:</b> Entity (7 classes), Boundary (7 classes), Control (6 classes) — ECB pattern.</li>
+      <li>All design artefacts provide a complete blueprint for implementation handoff.</li>
+    </ul>
+  </div>
+</div>
+
+<aside data-notes class="hidden">
+- Class diagram is the bridge between conceptual model and Prisma schema.
+- Collaboration diagrams clarify who initiates each cross-layer call.
+- State chart drives the Application status enum and transitions at API layer.
+- UI diagrams were the most useful artefact during implementation handoff.
+- ECB pattern keeps entity, boundary, and control logic cleanly separable.
+</aside>
+</body>
+</html>

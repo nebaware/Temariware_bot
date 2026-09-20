@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1.0">
+  <title>Feasibility Analysis — Temariware Defense</title>
+  <link rel="stylesheet" href="global.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tbl.feas td:first-child { font-weight: 700; width: 130px; }
+    .tbl.feas th:nth-child(3), .tbl.feas td:nth-child(3) { width: 150px; }
+    .verdict {
+      font-family: var(--font-body);
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .risk-line {
+      margin-top: 18px;
+      font-family: var(--font-body);
+      font-size: var(--fs-body-sm);
+      color: var(--primary);
+      border-left: 4px solid var(--accent);
+      padding: 10px 16px;
+      background: var(--surface);
+      line-height: 1.4;
+    }
+    .risk-line b { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <section class="slide">
+    <h1 class="slide-title">Feasibility Analysis</h1>
+
+    <div class="slide-body">
+      <table class="tbl feas">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Analysis</th>
+            <th>Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Technical</td>
+            <td>All tools are free, open-source, well-documented. Team has relevant coursework background.</td>
+            <td><span class="verdict">Feasible</span></td>
+          </tr>
+          <tr>
+            <td>Economic</td>
+            <td>Zero monthly recurring cost (Vercel free + Neon free + Telegram Bot API free). Only cost is team time.</td>
+            <td><span class="verdict">Feasible</span></td>
+          </tr>
+          <tr>
+            <td>Operational</td>
+            <td>Aligns with existing Telegram usage habits. No user training required. Document verification is intuitive.</td>
+            <td><span class="verdict">Feasible</span></td>
+          </tr>
+          <tr>
+            <td>Schedule</td>
+            <td>12-week timeline with 4 team members. Iterative development with continuous integration.</td>
+            <td><span class="verdict">Feasible (tight)</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="risk-line">
+        <b>Main risk:</b> single administrator for payment verification — mitigated in v2 via Chapa API integration.
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Temariware — Senior Project Defense</span>
+      <span>13</span>
+    </div>
+  </section>
+
+  <aside data-notes class="hidden">
+    <ul>
+      <li>Schedule risk was managed by overlapping WP3 (backend) with WP4 (frontend) using API contracts.</li>
+      <li>Economic feasibility is a strong selling point — committee usually probes cost recovery.</li>
+      <li>Operational feasibility rests on Telegram's existing user habit — no adoption barrier.</li>
+      <li>Single-admin payment verification is the principal operational bottleneck.</li>
+    </ul>
+  </aside>
+</body>
+</html>

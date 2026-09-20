@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 23 — Persistent Data Model</title>
+<link rel="stylesheet" href="global.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .slide .tbl { font-size: 14pt; }
+  .slide .tbl th, .slide .tbl td { padding: 6px 8px; }
+  .slide .tbl td:first-child { font-weight: 700; white-space: nowrap; }
+  .slide-body { gap: 12px; }
+  .callout { font-size: 14pt; padding: 10px 14px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1 class="slide-title">Persistent Data Model</h1>
+
+  <div class="slide-body">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th style="width: 22%;">Table</th>
+          <th>Key Fields</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>User</td>
+          <td>id, telegramId, role, language, profile + document fields, verification, isAdmin</td>
+        </tr>
+        <tr>
+          <td>Job</td>
+          <td>id, title, subjects, location, workType, salary, positionsAvailable, applicationFee, status</td>
+        </tr>
+        <tr>
+          <td>Application</td>
+          <td>id, jobId, userId, message, status, paymentScreenshot, hiredAt</td>
+        </tr>
+        <tr>
+          <td>Subscription</td>
+          <td>id, userId, category</td>
+        </tr>
+        <tr>
+          <td>VerificationRequest</td>
+          <td>id, userId, companyName, contactTelegram, status</td>
+        </tr>
+        <tr>
+          <td>Setting</td>
+          <td>id (singleton), jobPostFee, applicationFee, paymentInstructions</td>
+        </tr>
+        <tr>
+          <td>Payment</td>
+          <td>id, userId, jobId, type, amount, screenshotUrl, status, reviewedBy</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      Full ER diagram: Chapter 3, Figure 3.4. Complete Prisma schema: Appendix C.
+    </div>
+  </div>
+</div>
+
+<aside data-notes class="hidden">
+- User table centralises profile + role + verification.
+- Unique (jobId, userId) on Application enforces one-application-per-student.
+- Setting is a singleton row for global config.
+- Payment is an audit log linking User + Job + Application.
+- Reference Figure 3.4 and Appendix C for full schema.
+</aside>
+</body>
+</html>

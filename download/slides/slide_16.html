@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1.0">
+  <title>Non-Functional Requirements — Temariware Defense</title>
+  <link rel="stylesheet" href="global.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tbl.nfr { font-size: 17pt; }
+    .tbl.nfr td:first-child { font-family: var(--font-num); font-weight: 700; white-space: nowrap; width: 100px; }
+    .tbl.nfr td:nth-child(2) { font-weight: 700; width: 180px; }
+    .tbl.nfr td { padding: 10px 12px; line-height: 1.35; }
+    .tbl.nfr th { font-size: 17pt; }
+  </style>
+</head>
+<body>
+  <section class="slide">
+    <h1 class="slide-title">Non-Functional Requirements</h1>
+
+    <div class="slide-body">
+      <table class="tbl nfr">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Requirement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NFR-01</td>
+            <td>Performance</td>
+            <td>API response &lt; 500ms (95th percentile); Mini App first paint &lt; 2s on 3G</td>
+          </tr>
+          <tr>
+            <td>NFR-02</td>
+            <td>Security</td>
+            <td>HMAC-SHA256 auth; HTTPS only; no plaintext payment data</td>
+          </tr>
+          <tr>
+            <td>NFR-03</td>
+            <td>Usability</td>
+            <td>360px-wide screen support; 3 languages; 44px touch targets; haptic feedback</td>
+          </tr>
+          <tr>
+            <td>NFR-04</td>
+            <td>Reliability</td>
+            <td>99% uptime (Vercel SLA); graceful error handling</td>
+          </tr>
+          <tr>
+            <td>NFR-05</td>
+            <td>Scalability</td>
+            <td>Serverless scales to 1000 concurrent users on free tier</td>
+          </tr>
+          <tr>
+            <td>NFR-06</td>
+            <td>Maintainability</td>
+            <td>TypeScript throughout; modular components; lint-clean</td>
+          </tr>
+          <tr>
+            <td>NFR-07</td>
+            <td>Compatibility</td>
+            <td>Telegram mobile (iOS/Android), Desktop, Web; modern browser fallback</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="slide-footer">
+      <span>Temariware — Senior Project Defense</span>
+      <span>16</span>
+    </div>
+  </section>
+
+  <aside data-notes class="hidden">
+    <ul>
+      <li>NFR-01 verified with Vercel analytics + Lighthouse on a throttled 3G profile.</li>
+      <li>NFR-02 enforced at the route level — every API behind HTTPS, initData validated per request.</li>
+      <li>NFR-03 was tested on low-end Android devices in the Telegram client.</li>
+      <li>NFR-05 free-tier limits (Vercel, Neon) were stress-tested with a synthetic load script.</li>
+      <li>NFR-06 enforced via TypeScript strict mode + ESLint + Prettier pre-commit hook.</li>
+    </ul>
+  </aside>
+</body>
+</html>

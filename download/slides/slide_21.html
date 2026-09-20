@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 21 — Software Architecture</title>
+<link rel="stylesheet" href="global.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .slide .bullets li b { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1 class="slide-title">Software Architecture</h1>
+
+  <div class="slide-body">
+    <ul class="bullets">
+      <li><b>Selected style:</b> Layered Architecture with four layers — Presentation, Application, Domain, Persistence.</li>
+      <li><b>Presentation Layer:</b> React 19 components (Mini App views).</li>
+      <li><b>Application Layer:</b> Next.js API routes (controllers).</li>
+      <li><b>Domain Layer:</b> Prisma models + business logic.</li>
+      <li><b>Persistence Layer:</b> PostgreSQL on Neon (Frankfurt, eu-central-1).</li>
+      <li><b>Chosen for</b> clear separation of concerns, Next.js convention alignment, team familiarity.</li>
+    </ul>
+
+    <div class="callout">
+      Alternatives considered: Microkernel (too complex), Event-Driven (unnecessary complexity), Serverless-First (already adopted at deployment). Full comparison in Chapter 3, Table 3.1.
+    </div>
+  </div>
+</div>
+
+<aside data-notes class="hidden">
+- Four layers map cleanly to Next.js folder conventions (app/, api/, lib/, prisma/).
+- Layered over microservices because the team is small and the domain is bounded.
+- Persistence layer is swappable — Neon Postgres today, could be Supabase tomorrow.
+- Serverless-First was redundant: Vercel already enforces it at deployment.
+- Reference Table 3.1 in the document for the full architecture trade-off matrix.
+</aside>
+</body>
+</html>

@@ -1,0 +1,333 @@
+/* Temariware Senior Project Defense Slides
+   Dire Dawa University — Department of Software Engineering
+   Per Project Guideline Chapter 4: Arial, white bg, black text,
+   30pt titles, 20-24pt body, max 36pt title slide, ~6 bullets/slide */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Palette — strictly per guideline: white bg, black text */
+  --bg: #FFFFFF;
+  --primary: #000000;
+  --accent: #1F4E79;        /* deep blue — used sparingly for emphasis only */
+  --muted: #595959;
+  --rule: #BFBFBF;
+  --surface: #F5F5F5;
+
+  /* Typography tokens — Arial per guideline; Inter as web-safe fallback */
+  --font-heading: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  --font-body: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  --font-num: 'Roboto Mono', 'Courier New', monospace;
+
+  /* Size scale (per guideline: titles 30pt, body 20-24pt, title slide 36pt) */
+  --fs-title-slide: 36pt;   /* title slide project name */
+  --fs-h1: 30pt;            /* content slide titles */
+  --fs-body: 22pt;          /* body bullets */
+  --fs-body-sm: 20pt;       /* secondary body */
+  --fs-small: 16pt;         /* footer / page number */
+  --fs-micro: 14pt;         /* captions */
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--primary);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Slide canvas — exact 1280x720 per skill quality bar */
+.slide {
+  width: 1280px;
+  height: 720px;
+  min-height: 720px;
+  background: var(--bg);
+  color: var(--primary);
+  padding: 56px 72px 48px 72px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Slide title bar — 30pt, bold, black, with thin bottom rule */
+.slide-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.2;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--primary);
+  margin-bottom: 28px;
+}
+
+/* Body content area */
+.slide-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Bullet list — 22pt body, ~6 bullets max */
+.bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.bullets li {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--primary);
+  line-height: 1.4;
+  padding-left: 28px;
+  position: relative;
+}
+.bullets li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+  color: var(--primary);
+}
+.bullets li b, .bullets li strong { font-weight: 700; }
+
+/* Sub-bullets */
+.bullets li ul {
+  list-style: none;
+  margin-top: 8px;
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bullets li ul li {
+  font-size: var(--fs-body-sm);
+  color: var(--muted);
+}
+.bullets li ul li::before { content: "\2013"; }
+
+/* Numbered list */
+.ordered {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  counter-reset: item;
+}
+.ordered li {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--primary);
+  line-height: 1.4;
+  padding-left: 40px;
+  position: relative;
+  counter-increment: item;
+}
+.ordered li::before {
+  content: counter(item) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Two-column layout for compact slides */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  flex: 1;
+}
+.col h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Stat / key-value block */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.stat {
+  background: var(--surface);
+  padding: 20px;
+  border-left: 4px solid var(--primary);
+}
+.stat .num {
+  font-family: var(--font-num);
+  font-size: 32pt;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1;
+}
+.stat .label {
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* Footer — page number + project title */
+.slide-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 72px;
+  right: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+
+/* Cover slide layout */
+.cover {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 100px;
+}
+.cover .institution {
+  font-family: var(--font-heading);
+  font-size: 22pt;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.cover .institution-sub {
+  font-family: var(--font-body);
+  font-size: 18pt;
+  color: var(--muted);
+  margin-bottom: 48px;
+}
+.cover .project-label {
+  font-family: var(--font-heading);
+  font-size: 18pt;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+.cover .project-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-title-slide);
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.25;
+  max-width: 1000px;
+  margin: 0 auto 48px;
+}
+.cover .meta {
+  font-family: var(--font-body);
+  font-size: 18pt;
+  color: var(--primary);
+  line-height: 1.7;
+}
+.cover .meta b { font-weight: 700; }
+
+/* Section divider slide */
+.section-divider {
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 120px;
+}
+.section-divider .chapter-num {
+  font-family: var(--font-num);
+  font-size: 18pt;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.section-divider .chapter-title {
+  font-family: var(--font-heading);
+  font-size: 40pt;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section-divider .chapter-tagline {
+  font-family: var(--font-body);
+  font-size: 20pt;
+  color: var(--muted);
+  max-width: 800px;
+}
+
+/* Closing slide */
+.closing {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.closing .thanks {
+  font-family: var(--font-heading);
+  font-size: 48pt;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+.closing .qa {
+  font-family: var(--font-body);
+  font-size: 24pt;
+  color: var(--muted);
+}
+
+/* Table — for requirements / breakdowns */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+}
+.tbl th {
+  background: var(--surface);
+  font-weight: 700;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  color: var(--primary);
+}
+.tbl td {
+  padding: 8px 12px;
+  border: 1px solid var(--rule);
+  color: var(--primary);
+  vertical-align: top;
+}
+.tbl tr:nth-child(even) td { background: #FAFAFA; }
+
+/* Quote / callout */
+.callout {
+  background: var(--surface);
+  border-left: 4px solid var(--primary);
+  padding: 20px 24px;
+  font-family: var(--font-body);
+  font-size: var(--fs-body-sm);
+  color: var(--primary);
+  line-height: 1.4;
+}

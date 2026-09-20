@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Slide 22 — Component & Deployment</title>
+<link rel="stylesheet" href="global.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .slide .bullets li { font-size: 20pt; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1 class="slide-title">Component &amp; Deployment</h1>
+
+  <div class="slide-body">
+    <div class="two-col">
+      <div class="col">
+        <h3>Components</h3>
+        <ul class="bullets">
+          <li>Next.js Mini App (Vercel) — frontend + API routes</li>
+          <li>Telegram Bot Webhook (within Next.js) — receives updates</li>
+          <li>PostgreSQL Database (Neon Frankfurt) — data persistence</li>
+          <li>Telegram Bot API (external) — message sending + initData</li>
+          <li>@TEMARIWARE Channel (external) — public job broadcast</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Deployment Nodes</h3>
+        <ul class="bullets">
+          <li>Vercel Edge Network — runs Next.js globally</li>
+          <li>Neon Cloud (Frankfurt) — PostgreSQL, closest to Ethiopia</li>
+          <li>Telegram Cloud — Bot API + channel hosting</li>
+          <li>End users access via Telegram client (mobile/desktop/web)</li>
+          <li>Webhook: Telegram Cloud → Vercel via HTTPS</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      Full diagrams in Chapter 3, Figures 3.2 and 3.3.
+    </div>
+  </div>
+</div>
+
+<aside data-notes class="hidden">
+- Bot webhook lives inside the same Next.js app to keep deployment single-artifact.
+- Frankfurt Neon region was the lowest-latency free-tier option for Ethiopian users.
+- Telegram Cloud handles all message delivery; we never run our own push infra.
+- Vercel Edge serves the Mini App globally, not just from one region.
+- Reference Figures 3.2 and 3.3 for the full component and deployment views.
+</aside>
+</body>
+</html>

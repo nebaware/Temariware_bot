@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1280, initial-scale=1.0">
+  <title>Essential Use Case Model — Temariware Defense</title>
+  <link rel="stylesheet" href="global.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .subhead {
+      font-family: var(--font-body);
+      font-size: var(--fs-body-sm);
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .actor-block { display: flex; flex-direction: column; gap: 14px; }
+    .actor-card { padding: 12px 14px; background: var(--surface); border-left: 4px solid var(--accent); }
+    .actor-card .actor-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--fs-body-sm);
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .actor-card .use-cases {
+      font-family: var(--font-body);
+      font-size: 16pt;
+      color: var(--primary);
+      line-height: 1.4;
+    }
+    .callout-final {
+      background: var(--surface);
+      border-left: 4px solid var(--primary);
+      padding: 14px 18px;
+      font-family: var(--font-body);
+      font-size: 16pt;
+      color: var(--primary);
+      line-height: 1.45;
+    }
+    .callout-final b { font-weight: 700; }
+    .callout-final .rel { color: var(--accent); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <section class="slide">
+    <h1 class="slide-title">Essential Use Case Model</h1>
+
+    <div class="slide-body">
+      <p class="subhead">Four primary actors, fifteen use cases.</p>
+
+      <div class="two-col">
+        <div class="col">
+          <div class="actor-block">
+            <div class="actor-card">
+              <div class="actor-name">Student</div>
+              <div class="use-cases">Browse Job Feed, View Job Detail, Complete Profile, Apply to Job, Subscribe to Alerts, Upload Payment, View My Applications</div>
+            </div>
+            <div class="actor-card">
+              <div class="actor-name">Employer</div>
+              <div class="use-cases">Post Job, Review Applicants, Accept Applicant, Reject Applicant, Verify Employer</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="actor-block">
+            <div class="actor-card">
+              <div class="actor-name">Administrator</div>
+              <div class="use-cases">Approve Job, Approve Payment, Approve Verification, Configure Settings</div>
+            </div>
+            <div class="actor-card">
+              <div class="actor-name">Telegram Bot</div>
+              <div class="use-cases">Handle Slash Commands, Push Job Alerts, Broadcast to Channel</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout-final">
+        <span class="rel">Include</span> relationship: <b>Apply to Job</b> includes <b>Check Profile Complete</b>. <span class="rel">Extend</span> relationship: <b>Post Job</b> extends <b>Upload Payment Screenshot</b> (only when fee &gt; 0). Full use case diagram in Chapter 2, Figure 2.7.
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Temariware — Senior Project Defense</span>
+      <span>18</span>
+    </div>
+  </section>
+
+  <aside data-notes class="hidden">
+    <ul>
+      <li>Lead with the four actors — they map directly to the role field in the User table.</li>
+      <li>The Apply-to-Job path is the most important — it triggers profile checks, application fee, and employer notification.</li>
+      <li>The Post-Job extend relationship is conditional on jobPostFee &gt; 0.</li>
+      <li>The Bot actor is non-human but treated as a primary actor because it owns three use cases.</li>
+      <li>Reference Chapter 2 Figure 2.7 for the full UML use case diagram.</li>
+    </ul>
+  </aside>
+</body>
+</html>
